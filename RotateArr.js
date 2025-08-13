@@ -4,7 +4,7 @@
 
 let arr = [1, 2, 3, 4, 5, 6];
 let d = 2;
-let newarr = basicApp(arr, d);
+let newarr = OptRotate(arr, d);
 console.log(newarr.join(" "));
 
 
