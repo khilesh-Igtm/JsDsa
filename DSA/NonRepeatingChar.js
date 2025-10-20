@@ -15,27 +15,31 @@ function nonRepeatingChar(str){
   return maxLen;
 }
 
-// console.log(nonRepeatingChar("bbbb"));
+console.log(noRepeat("abcabcbb"));
 
 
-function longestUniqueSubstring(str){
-  let map = new Map();
-  let left =0;
-  let maxLen =0;
-
-  for(let right =0;right <str.length;right++){
-    if(map.has(str[right]) && map.get(str[right]) >=left){
-      left = map.get(str[right]) + 1;
-    }
-
-    map.set(str[right],right);
-    maxLen = Math.max(maxLen, right-left+1);
-  }
-  return maxLen;
-}
-
-console.log(longestUniqueSubstring("abcabcbb"));
+// console.log(longestUniqueSubstring("abcabcbb"));
 
 
 // if instead of maxLen , substring hi return karne ko bol diya too
 
+// optimal solution
+function noRepeat(str){
+  let set = new Set();
+  let left =0;
+  let maxLen =0;
+  let longestSub ="";
+
+  for(let right =0;right<str.length;right++){
+    while(set.has(str[right])){
+      set.delete(str[left])
+      left++;
+    }
+    set.add(str[right])
+    if(right - left + 1> maxLen){
+      maxLen = right - left +1;
+      longestSub = str.substring(left,right+1);
+    }
+  }
+  return {longestSub, maxLen};
+}
