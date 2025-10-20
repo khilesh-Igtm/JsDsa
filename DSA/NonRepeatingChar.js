@@ -2,20 +2,27 @@
 
 function nonRepeatingChar(str){
   let maxLen =0;
+  let maxStr = "";
+
   for(let i =0;i<str.length;i++){
     let seen = new Set();
+    let currentStr = "";
     for(let j =i;j<str.length;j++){
       if(seen.has(str[j])){
         break;
       }
       seen.add(str[j]);
-      maxLen = Math.max(maxLen, j-i+1);
+      currentStr += str[j];
+      if(currentStr.length > maxLen){
+        maxLen = currentStr.length;
+        maxStr = currentStr;
+      }
     }
   }
-  return maxLen;
+  return {maxLen, maxStr};
 }
 
-console.log(noRepeat("abcabcbb"));
+console.log(nonRepeatingChar("abcabcbb"));
 
 
 // console.log(longestUniqueSubstring("abcabcbb"));
